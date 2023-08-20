@@ -131,6 +131,7 @@
 
     function getFormData() {
       return {
+        celularId: document.getElementById("id").value,
         marca: document.getElementById("name").value,
         modelo: document.getElementById("modelo").value,
         color: document.getElementById("color").value,
@@ -148,7 +149,16 @@
       document.getElementById("email").value = "";
     }
 
-    function setFormData(marca, modelo, color, precio, descripcion, operadora) {
+    function setFormData(
+      celularId,
+      marca,
+      modelo,
+      color,
+      precio,
+      descripcion,
+      operadora
+    ) {
+      document.getElementById("id").value = celularId;
       document.getElementById("name").value = marca;
       document.getElementById("modelo").value = modelo;
       document.getElementById("color").value = color;
@@ -198,12 +208,9 @@
         .then((response) => {
           console.log("Edit info", response);
           editFormData = response;
-          console.log(
-            editFormData.marca,
-            editFormData.precio,
-            editFormData.operadora
-          );
+
           setFormData(
+            editFormData.celularId,
             editFormData.marca,
             editFormData.modelo,
             editFormData.color,
